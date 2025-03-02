@@ -49,6 +49,7 @@ parser.add_argument("--output-directory", type=str, default=None, help="Set the 
 parser.add_argument("--temp-directory", type=str, default=None, help="Set the ComfyUI temp directory (default is in the ComfyUI directory). Overrides --base-directory.")
 parser.add_argument("--input-directory", type=str, default=None, help="Set the ComfyUI input directory. Overrides --base-directory.")
 parser.add_argument("--auto-launch", action="store_true", help="Automatically launch ComfyUI in the default browser.")
+parser.add_argument("--auto-launch-in", type=str, default=None, help="Automatically launch ComfyUI in any browser. Requires the path to the browser.")
 parser.add_argument("--disable-auto-launch", action="store_true", help="Disable auto launching the browser.")
 parser.add_argument("--cuda-device", type=int, default=None, metavar="DEVICE_ID", help="Set the id of the cuda device this instance will use.")
 cm_group = parser.add_mutually_exclusive_group()
