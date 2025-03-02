@@ -274,14 +274,18 @@ def start_comfyui(asyncio_loop=None):
 
     os.makedirs(folder_paths.get_temp_directory(), exist_ok=True)
     call_on_start = None
-    if args.auto_launch:
+    if args.auto_launch or args.auto_launch_in:
         def startup_server(scheme, address, port):
-            import webbrowser
             if os.name == 'nt' and address == '0.0.0.0':
                 address = '127.0.0.1'
             if ':' in address:
                 address = "[{}]".format(address)
-            webbrowser.open(f"{scheme}://{address}:{port}")
+            if args.auto_launch:
+                import webbrowser
+                webbrowser.open(f"{scheme}://{address}:{port}")
+            elif args.auto_launch_in:
+                import subprocess
+                subprocess.run(f"{args.auto_launch_in} {scheme}://{address}:{port}")
         call_on_start = startup_server
 
     async def start_all():
